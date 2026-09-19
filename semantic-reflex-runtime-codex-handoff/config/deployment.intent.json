@@ -1,0 +1,49 @@
+{
+  "schema": "srr.deployment-intent/1",
+  "note": "本项目设计配置；不是 Codex 原生配置；空锁/权限禁止启用。",
+  "host": {
+    "family": "Codex",
+    "form": "CLI",
+    "task_mode": "single_task_noninteractive",
+    "exact_version": null,
+    "entrypoint_sha256": null,
+    "distribution_ref": null
+  },
+  "provider": {
+    "transport": "local_stdio_mcp",
+    "implementation_status": "NOT_IMPLEMENTED",
+    "language": "Python 3.11+",
+    "mcp_sdk_lock": null,
+    "tool_names": [
+      "srr_search",
+      "srr_recall"
+    ],
+    "storage": "per_run_sqlite_transaction"
+  },
+  "mode": {
+    "admission": "off",
+    "semantic_backend": "disabled",
+    "provider_remote_semantic_egress": false
+  },
+  "scope": {
+    "result_kind": "literal_utf8_readonly_search",
+    "global_native_tool_interception": false,
+    "cross_principal_sharing": false,
+    "subagent_report_filtering": false
+  },
+  "required_operator_bindings": {
+    "trusted_run_manifest_hash": null,
+    "principal_binding": null,
+    "authorization_epoch": null,
+    "source_quota_bytes": null,
+    "run_close_and_retention_policy": null,
+    "approved_native_config_hash": null
+  },
+  "safety": {
+    "allow_unverified_host_activation": false,
+    "allow_policy_from_tool_arguments": false,
+    "full_request_can_only_increase_disclosure": true,
+    "preserve_valid_recall_when_admission_off": true,
+    "H12_required": true
+  }
+}

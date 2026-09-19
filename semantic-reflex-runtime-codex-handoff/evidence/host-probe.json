@@ -1,0 +1,21 @@
+{
+  "schema": "srr.local-host-probe/1",
+  "recorded_at_utc": "2026-09-18T14:50:48.949847+00:00",
+  "evidence_type": "LOCAL_ENVIRONMENT_INSPECTION_NOT_INTEGRATION",
+  "host_target": "Codex CLI",
+  "platform": "Linux",
+  "python_version": "3.13.5",
+  "codex_found": false,
+  "resolved_entrypoint": null,
+  "entrypoint_sha256": null,
+  "local_commands_executed": [],
+  "task_execution_requested": false,
+  "credentials_read": false,
+  "integration_verified": false,
+  "limitations": [
+    "PATH absence describes this environment only.",
+    "Entrypoint hash does not identify every transitive binary or package.",
+    "Version/help are not proof of MCP or model-request behavior."
+  ],
+  "status": "CODEX_NOT_FOUND"
+}

@@ -1,0 +1,80 @@
+来源编号：A5
+来源路径：v0.6 ZIP / docs/architecture/appendices/A5-protocol-index.md
+原始文件 SHA-256：bc98d6eda9a6f7c22a8b420460ae1e7ab393ccbd40de2f9c07e3cc804c5e2f6b
+以下 L 编号对应原始文件物理行；本文件为带行号派生副本，不是新增规范。
+
+L0001 | # A5 协议与术语主定义索引
+L0002 | 
+L0003 | > 只做索引与职责表，不建立运行时 Registry。文中字段为 Draft，尚不是对外发布标准。
+L0004 | 
+L0005 | | 对象 / 术语 | 主定义 | 生产方 | 消费方 | 关键限制 |
+L0006 | |---|---|---|---|---|
+L0007 | | Adapter Capability | §03 | 宿主适配核验 | 策略、实验 | 通知与替换分开声明 |
+L0008 | | Source Snapshot / Source Block | §04 | 已授权工具返回捕获层 | Signal、信封、Recall、评测 | 快照不等于最新内容；hash 不授予权限 |
+L0009 | | State Capsule | §04 | 宿主状态提取层 | Signal / Policy | 只含当时可得信息；缺失显式 unknown |
+L0010 | | Recipient View | §04 | 宿主交付收据 | State / Policy / 评测 | A 已见不能推导 B 已见 |
+L0011 | | Signal | §05 | 规则或语义后端 | Policy / 审计 | 标签/分数不是执行权 |
+L0012 | | Decision Record | §06 | Policy / Executor | 交付、审计、评测 | 原建议与最终保护覆写分开 |
+L0013 | | Disclosure Envelope | §08 | Policy / Renderer | 接收方 | 子集诚实、目录可枚举、保护不被省略 |
+L0014 | | Recall Handle / Request / Result | §09 | 源引用与请求方 | Recall / 接收方 | 身份来自宿主，不能二次语义阻拦 |
+L0015 | | Process Record / Replay Mode | §11 | 捕获与执行层 | 审计 / Evaluation | 固定前缀、重演、闭环分开 |
+L0016 | | Task Outcome / Evaluation Arm | §12 | 独立验收与实验执行器 | 成本比较 / 晋升 | 不用自身 Signal 自证任务成功 |
+L0017 | | Cost Record | §13 | 用量/费用归一层 | 评测 / 决策 | 计费项互斥，未知价格不编造 |
+L0018 | 
+L0019 | 规范与示例的区别：`examples/` 是这些语义的一个构造性表示，不覆盖全部字段、并发、ACL 或错误路径；样例通过校验不等于协议实现合格。
+L0020 | 
+L0021 | ## v0.2 新增与语义细化
+L0022 | 
+L0023 | | 对象 | 唯一主定义 | 使用方 | 说明 |
+L0024 | |---|---|---|---|
+L0025 | | capture_complete / producer_status / query_scope | §04.8 | §03 / §08 / §09 | 取代一个 complete 承担多种含义 |
+L0026 | | decision_context_revision | §03.9（依赖语义），§04（状态引用） | §05–§06 | 不把无关日志计数当业务版本变化 |
+L0027 | | Delivery State / DELIVERY_UNKNOWN | §06.7 | §03 / §11 / §15 | 与 USE_BASELINE / DELIVER_ENVELOPE 动作不同 |
+L0028 | | InitialDisclosureRequest | §07.2 | DISCLOSE / Adapter | 只承诺已枚举目录范围 |
+L0029 | | ExpandRequest / ExpansionResult | §09.8 | EXPAND / Retrieval | 不与原文 recall 混淆 |
+L0030 | | ObservationWindow / Assessment / FeedbackProposal | §10.2 | OBSERVE / Policy | 事实、检测、干预分开 |
+L0031 | | ExperimentManifest / TaskAttempt | §12.9 | 执行器 / 评测 | 模板不是冻结的实验 |
+L0032 | | RuntimeConfigSnapshot | §15.2 | 全部在线构件 | 停筛/排空、版本兼容、授权引用 |
+L0033 | 
+L0034 | v0.1 examples 保留旧字段作为历史构造样例，不自动当 v0.2 wire 标准。lab 使用新语义的部分模型，未完整实现所有协议字段。没有创建额外运行时注册服务。
+L0035 | 
+L0036 | ## v0.3 新增与收窄
+L0037 | 
+L0038 | | 对象 | 主定义 | 消费方 | 限制 |
+L0039 | |---|---|---|---|
+L0040 | | Selection Group / protection closure | §04.11（表示）、§06.11（策略） | B/C / Renderer | 不能假定字节块语义独立 |
+L0041 | | baseline_kind / fallback reason | §06.11 | Adapter / Telemetry | 原生 A、规则 B、明确分页不混淆 |
+L0042 | | ExecutionUnit / frozen cohort | §12.14 | 实验执行器 / 分析 | 完整任务执行，不是内部 retry；结果不能改臂 |
+L0043 | | missing-outcome bounds | §12.15 | 研究报告 / 评审 | 有限样本识别范围，不是置信区间 |
+L0044 | | CostLedgerStatus | §13.10 | §12 / 分析 | 已有金额都非空，不等于费用已闭合 |
+L0045 | | Descriptive Analysis Report | §12.17 | 架构/实验评审 | 不自动晋升，不验证字符串引用真实性 |
+L0046 | 
+L0047 | `lab/analysis/` 使用 `analysis-draft-0.3` 文件格式，只支持平衡 A/B/C 等权单位描述。它是实验工具合同示例，不是在线 Runtime 的 wire 版本或已冻结公共标准。
+L0048 | 
+L0049 | ## v0.4 本地实现映射，不新增并行主定义
+L0050 | 
+L0051 | `lab/baseline` 的 local-capture / local-admission / local-decision / local-recall / local-ready 均为设计期样例格式。Source/State 归 §04，保护与预算退出归 §06，展示归 §08，Recall 归 §09，权限归 §14，真实交付归 §03/§06。
+L0052 | 
+L0053 | PREPARED_LOCAL_NOT_SENT 只是样机产物状态，不替换正式交付状态机，不使 READY 成为回执。CLI schema 没有被用户冻结为对外 API。
+L0054 | 
+L0055 | ## v0.5 恢复接口主定义与样例映射
+L0056 | 
+L0057 | | 对象 | 唯一主定义 | 样例 | 限制 |
+L0058 | |---|---|---|---|
+L0059 | | ExactBatchRequest / OriginalDeferredRequest | §09.12 | local-batch-recall-v1 的 batch_ids / all_deferred | 单源单接收方，不是搜索/全局 unread |
+L0060 | | RequestBoundCursor | §09.13 | plan / index / offset | 源/视图/请求绑定，不是签名或授权 |
+L0061 | | FixedDemandProtocolDiagnostic | §12.19 | lab/recovery report.json | 局部协议，不能进入 E4 任务成绩 |
+L0062 | | LocalTransportAccounting | §13.13 | request/response/raw-overlap counters | 不是 provider 用量与现金账单 |
+L0063 | 
+L0064 | 公共能力描述仅是诊断中显式计量的额外本地消息；其字段没有被宣布为真实宿主工具 schema，也不替代 E0 的出站请求证据。
+L0065 | 
+L0066 | ## v0.6 诊断投影，不新增生产 wire
+L0067 | 
+L0068 | | 对象 | 主定义 | 样例 | 限制 |
+L0069 | |---|---|---|---|
+L0070 | | Recipient / Selector / Evaluator projection | §04.13 / §14.9 | discovery-fixture-0.6 | 会话别名是诊断投影，不改 v0.5 wire |
+L0071 | | Paired-world diagnostic | §12.20 / E3 需求诊断 | 4 族、13 对的手工世界 | 有限候选，不是自然任务或统计样本 |
+L0072 | | Public export allowlist | §14.9 / E0 | agent/input.json | 不证明 OS/宿主隔离 |
+L0073 | | Evidence-use observation | §11.11 | 可访问／交付／行为／结果分账 | 不写 understood=true，不读取内部思考 |
+L0074 | 
+L0075 | 本轮 `list_repo/read_repo` 仅属手工读取探针；正式 Recall 与 EXPAND 的生产语义仍以 §09 为主。没有新增 Runtime registry 或认知状态服务。
