@@ -1,36 +1,21 @@
 # jev2agent
 
-Semantic Reflex Runtime 的开发仓库。当前是已封包的架构与实施交接材料，尚无生产 MCP provider。
+Semantic Reflex Runtime：研究只读搜索结果的 ADMIT＋原文 recall，能否在保持任务质量与权限边界的同时降低实际执行成本。
 
-首发范围：Codex CLI 单任务运行中的只读搜索 ADMIT＋原文 recall。默认关闭干预与语义后端；先完成 W1a 宿主能力核验，再推进最小实现和 E0 真机验收。
+当前完成架构设计，尚无生产运行时。宿主为 Codex CLI，下一阶段是 W1a 版本与原生能力核验；干预和语义后端默认关闭。
 
-## 开发入口
+## 开发文档
 
-- [开发接续调查](docs/research/2026-09-19-project-baseline.md)
-- [交接包说明](semantic-reflex-runtime-codex-handoff/README.md)
-- [架构合同](semantic-reflex-runtime-codex-handoff/ARCHITECTURE.md)
-- [有限实施任务](semantic-reflex-runtime-codex-handoff/docs/IMPLEMENTATION.md)
-- [前序会话背景](docs/handoff/SESSION_CONTEXT.md)
+- [当前状态](docs/STATUS.md)
+- [架构合同](docs/architecture/ARCHITECTURE.md) · [Codex 宿主合同](docs/architecture/CODEX_HOST_CONTRACT.md)
+- [实施路线](docs/plans/IMPLEMENTATION.md) · [E0 真机验收清单](docs/validation/E0_CODEX_ACCEPTANCE.md)
+- [运行与回退](docs/OPERATIONS.md) · [决议记录](docs/decisions/DECISION_CLOSURE.md)
+- [开发接续](docs/handoff/README.md) · [历史定义索引](docs/references/README.md)
 
-较新的会话迁移包仅补充背景与启动说明，内含架构包与原包完全一致。接续资料见 `docs/handoff/`；两个重复根 ZIP 已清理，原件保存在仓库外备份。
+交接资料已拆入 `docs/`。封包脚本、合成测试、旧检查报告、清单与重复 ZIP 已删除；尚无产品测试，E0 未执行。原件可从仓库外备份或 Git 历史恢复。
 
-原封包保持字节不变；后续生产代码与新增测试放包外。`references/` 和 `archive/` 含历史验收材料，不应整体提供给受测 agent。
+## 本地工作流
 
-## 本地检查
+已安装 `dev-flow-GPT`，其 `AGENTS.md`、`Agent-init/`、`.agents/`、`.codex/` 与运行状态由 `.gitignore` 排除。新会话用 `/ms-start`，日常任务用 `/ms-loop`。项目文档与计划保留在 Git 中。
 
-需要 Python 3.11+，在交接包目录运行：
-
-```sh
-cd semantic-reflex-runtime-codex-handoff
-python3 -B -m unittest discover -s tests -v
-python3 -B tools/verify_package.py .
-python3 -B tools/check_e0_evidence.py --evidence config/e0-evidence.template.json --root .
-```
-
-未填 E0 模板预期返回退出码 2、`NOT_READY`；辅助检查通过不代表 Codex 集成已验收。
-
-## 本地开发工作流
-
-本机安装 `dev-flow-GPT`，其入口与配置由 `.gitignore` 排除，不随仓库发布。项目研究与开发计划保留在 Git 中。
-
-其他工作区可从自己的工作流母版目录执行 `bash skills/ms-init/init.sh <项目绝对路径> jev2agent`，根据上述项目资料填写 `Agent-init/PROJECT_OVERLAY.md`，新会话使用 `/ms-start`。
+其他工作区可从自己的工作流母版执行 `bash skills/ms-init/init.sh <项目绝对路径> jev2agent`，根据上述资料填写项目 overlay。

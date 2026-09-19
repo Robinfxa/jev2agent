@@ -1,6 +1,6 @@
 # Codex 首发适配合同
 
-**性质：本轮工程裁定，不是 Codex 当前官方接口的核验报告。** 上位逻辑为 [ARCHITECTURE](../ARCHITECTURE.md)。原 F1–F3 来自 [结项评审](../references/closeout/REVIEW.md)。
+**性质：本轮工程裁定，不是 Codex 当前官方接口的核验报告。** 上位逻辑为 [ARCHITECTURE](ARCHITECTURE.md)。原 F1–F3 源自结项评审；评审原件保存在整理前 Git 历史，定义依据见 [历史章节索引](../references/README.md)。
 
 ## C1｜确定宿主和可支持范围
 
@@ -104,4 +104,4 @@ provider 重启同一 run 时读取原事务存储，核对同一授权 manifest
 | F2 | 可信 run manifest＋单授权域＋独立进程/挂载约束；外发默认关闭 | 实际 session 绑定、不可伪造保护、撤权、数据可见范围与网络限制 |
 | F3 | SQLite 提交后发引用＋同 run 目录/分页＋活跃源保留/回滚 | 真正工具召回、故障写入、重启/compaction、撤权与配额检查 |
 
-三项都不再悬着等下一本书选择方案；但本包不把它们的**现场证据**改成 PASS。当前状态见 [STATUS](../STATUS.json)；有限实施顺序见 [IMPLEMENTATION](IMPLEMENTATION.md)。
+三项都不再悬着等下一本书选择方案；但本包不把它们的**现场证据**改成 PASS。当前状态见 [STATUS](../STATUS.md)；有限实施顺序见 [IMPLEMENTATION](../plans/IMPLEMENTATION.md)。

@@ -37,7 +37,3 @@ htmlcov/
 /.local/
 /backups/
 *.log
-
-# Redundant top-level transfer archives; sealed package archives stay tracked
-/semantic-reflex-runtime-codex-handoff.zip
-/semantic-reflex-runtime-session-transfer.zip
