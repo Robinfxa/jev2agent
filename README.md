@@ -10,7 +10,9 @@ Semantic Reflex Runtime 的开发仓库。当前是已封包的架构与实施�
 - [交接包说明](semantic-reflex-runtime-codex-handoff/README.md)
 - [架构合同](semantic-reflex-runtime-codex-handoff/ARCHITECTURE.md)
 - [有限实施任务](semantic-reflex-runtime-codex-handoff/docs/IMPLEMENTATION.md)
-- [前序会话背景](semantic-reflex-runtime-session-context.md)
+- [前序会话背景](docs/handoff/SESSION_CONTEXT.md)
+
+较新的会话迁移包仅补充背景与启动说明，内含架构包与原包完全一致。接续资料见 `docs/handoff/`；两个重复根 ZIP 已清理，原件保存在仓库外备份。
 
 原封包保持字节不变；后续生产代码与新增测试放包外。`references/` 和 `archive/` 含历史验收材料，不应整体提供给受测 agent。
 
